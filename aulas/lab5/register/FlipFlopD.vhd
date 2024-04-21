@@ -18,7 +18,7 @@ begin
     m3 <= m1 NAND m4;
     m4 <= m2 NAND m3;
 	
-	 s1 <= (m3 	NAND NOT(clock));
+	 s1 <= (m3 	NAND clock);
 	 s2 <= (NOT(m3) NAND NOT(clock));
 	 s3 <=  s1 NAND s4;
 	 s4 <=  s2 NAND s3;
