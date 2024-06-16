@@ -1,7 +1,7 @@
 LIBRARY IEEE;
 use IEEE.std_logic_1164.all;
 
-entity RegW is
+entity Reg_W is
 	generic
 	(
 		W: natural
@@ -15,9 +15,9 @@ entity RegW is
 				D: 	 in std_logic_vector (W-1 downto 0);
 				Q: 	 out std_logic_vector(W-1 downto 0)
 		  );
-end RegW;
+end Reg_W;
 
-architecture RTL of RegW is
+architecture RTL of Reg_W is
 begin
     process(clock, reset)
     begin
