@@ -2,7 +2,8 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity pseudo_mux is
-    port (
+    port 
+	 (
         RESET   : in    std_logic;
         CLOCK   : in    std_logic;
         S       : in    std_logic;
