@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.numeric_std.all;
 
-entity mean_4_clocks is
+entity Reg_MA is
 	generic 
 	(
 		W       : natural := 4
@@ -13,9 +13,9 @@ entity mean_4_clocks is
 		INPUT   : in  std_logic_vector(W - 1 downto 0);
 		OUTPUT  : out std_logic_vector(W - 1 downto 0)
 	);
-end mean_4_clocks;
+end REG_MA;
 
-architecture arch of mean_4_clocks is
+architecture arch of REG_MA is
 	signal var1, var2, var3, var4 : unsigned(W + 1 downto 0) := (others => '0');
 	signal sum : unsigned(W + 1 downto 0) := (others => '0');
 begin
