@@ -12,6 +12,7 @@ architecture behavior of tb_FlipFlopD is
             Q     : out std_logic
         );
     end component;
+
     signal clock : std_logic := '0';
     signal D     : std_logic := '0';
     signal Q     : std_logic;
@@ -22,6 +23,7 @@ begin
         D     => D,
         Q     => Q
     );
+
     clock_process: process
     begin
         while true loop
@@ -32,7 +34,6 @@ begin
         end loop;
     end process;
 
-    
     test_process: process
     begin
         wait for 5 ns; 
