@@ -10,7 +10,7 @@ architecture testbench of tb_datapath is
     signal E            : std_logic_vector(3 downto 0) := "0000";
     signal Sobe         : std_logic;
     signal Desce        : std_logic;
-    signal Media        : std_logic_vector(6 downto 0);
+    signal Media        : std_logic_vector(6 downto 0) := "0000000";
     signal load_E       : std_logic := '0';
     signal Reset_MA     : std_logic := '0';
     signal Maior        : std_logic;
@@ -19,26 +19,12 @@ architecture testbench of tb_datapath is
     signal Subindo      : std_logic := '0';
     signal Atualizar    : std_logic := '0';
     signal clock        : std_logic := '0';
-    signal Sig_E        : std_logic_vector(3 downto 0) := "0000";
-    signal Sig_M        : std_logic_vector(3 downto 0) := "0000";
+    signal Sig_E_out    : std_logic_vector(3 downto 0) := "0000";
+    signal Sig_M_out    : std_logic_vector(3 downto 0) := "0000";
 
-    constant clock_period : time  := 10 ns;
-    signal clock_count    : integer := 0;
-    signal stop_clock     : boolean := false;
+    constant clock_period : time := 10 ns;
 
-    component Clk_Gen is
-        port (
-            clock_out : out std_logic
-        );
-    end component;
-
-    signal clk_tb : std_logic;
 begin
-
-    clk_gen_inst : Clk_Gen
-        port map (
-            clock_out => clk_tb
-        );
 
     datapath_inst : entity work.Datapath
         port map (
@@ -53,51 +39,42 @@ begin
             Descendo => Descendo,
             Subindo => Subindo,
             Atualizar => Atualizar,
-            clock => clk_tb,
-            Sig_E => Sig_E,
-            Sig_M => Sig_M
+            clock => clock,  -- Corrected clock signal
+            Sig_E_out => Sig_E_out,
+            Sig_M_out => Sig_M_out
         );
 
     clock_process : process
     begin
-        while not stop_clock loop
+        while true loop
             clock <= '0';
             wait for clock_period / 2;
             clock <= '1';
             wait for clock_period / 2;
-            clock_count <= clock_count + 1;
-            if clock_count = 20 then
-                stop_clock <= true;
-            end if;
         end loop;
-        wait;
     end process;
 
     test_process : process
     begin
-        E <= "0000";
-        load_E <= '0';
+        -- Reset sequence
+        load_E <= '1';
+        E <= "1000";
         Reset_MA <= '0';
         Descendo <= '0';
         Subindo <= '0';
-        Atualizar <= '0';
+        Atualizar <= '1';
         wait for 10 ns;
 
         load_E <= '1';
         E <= "0101";
         wait for 10 ns;
-        load_E <= '0';
-        wait for 10 ns;
 
-        Atualizar <= '1';
         Subindo <= '1';
         Descendo <= '0';
         wait for 10 ns;
         E <= "1010";
-        Atualizar <= '0';
         wait for 10 ns;
 
-        Reset_MA <= '1';
         wait for 10 ns;
         Reset_MA <= '0';
         wait for 10 ns;
