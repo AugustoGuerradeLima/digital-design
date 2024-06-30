@@ -19,8 +19,8 @@ entity Datapath is
 		Atualizar	: in std_logic;
 		clock			: in std_logic;
 		-- Desafio
-		Sig_E : buffer std_logic_vector(3 downto 0);
-		Sig_M : buffer std_logic_vector(3 downto 0)
+		Sig_E_out : out std_logic_vector(3 downto 0); -- Added output port for Sig_E
+		Sig_M_out : out std_logic_vector(3 downto 0)  -- Added output port for Sig_M
 	);
 end Datapath;
 
@@ -74,8 +74,9 @@ architecture structural of Datapath is
 	end component;
 	
 	--sinais entre os componentes
-	--signal Sig_E, Sig_M : std_logic_vector(3 downto 0);
-	
+    signal Sig_E : std_logic_vector(3 downto 0) := "0000";
+    signal Sig_M : std_logic_vector(3 downto 0) := "0000";
+	 
 	--inicio das instancias
 	begin
 		instancia_Reg_E		:	Reg_W   		generic map(W=>4) port map(clock=>clock, reset=>'0', load=>load_E, D=>E, Q=>Sig_E);
@@ -83,5 +84,8 @@ architecture structural of Datapath is
 		instancia_Reg_MA		:	Reg_MA 		port map	(clock=>clock, RESET=>Reset_MA, INPUT=>Sig_E, OUTPUT=>Sig_M);
 		instancia_Comparador	:	Comparador 	port map(a=>Sig_E,b=>Sig_M, maior=>Maior, menor=>Menor);
 		instancia_BCD_7seg	:	BCD_7seg		port map(entrada=>Sig_M, saida=>Media);
+		
+		Sig_E_out <= Sig_E;
+		Sig_M_out <= Sig_M;
 	
 end structural;
