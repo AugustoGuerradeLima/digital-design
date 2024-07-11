@@ -1,0 +1,99 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/prade/Documents/ufmg/2024_01/lab_sd/aula10/ExemploFuncao
+Efuncao
+Z1 w1720723188
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 0
+R0
+Z5 8funcao.vhd
+Z6 Ffuncao.vhd
+l0
+L7 1
+V^YaAn69OlfaIkoH9h`FV?1
+!s100 n^>Cem>m4M4Bcg6S`WM=i2
+Z7 OV;C;2020.1;71
+31
+Z8 !s110 1720724095
+!i10b 1
+Z9 !s108 1720724095.000000
+Z10 !s90 -reportprogress|300|-explicit|-93|funcao.vhd|
+Z11 !s107 funcao.vhd|
+!i113 1
+Z12 o-explicit -93
+Z13 tExplicit 1 CvgOpt 0
+Abeh
+R2
+R3
+R4
+DEx4 work 6 funcao 0 22 ^YaAn69OlfaIkoH9h`FV?1
+!i122 0
+l15
+L14 4
+VzMgEm26J8Uoi`Tk4AiiiP3
+!s100 VT8NO<iELN7jEPcZWXHd52
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Etb_funcao
+Z14 w1720723581
+R2
+Z15 DPx4 ieee 16 std_logic_textio 0 22 ^l:n6VFdg74Q?CKDhjD]D3
+R3
+R4
+!i122 1
+R0
+Z16 8tb_funcao.vhd
+Z17 Ftb_funcao.vhd
+l0
+L7 1
+V=8fmS1<aaTzEP^013XQe:2
+!s100 5_;3Wlbj_<?_?Wggf3X<52
+R7
+31
+R8
+!i10b 1
+R9
+Z18 !s90 -reportprogress|300|-explicit|-93|tb_funcao.vhd|
+!s107 tb_funcao.vhd|
+!i113 1
+R12
+R13
+Atb
+R2
+R15
+R3
+R4
+DEx4 work 9 tb_funcao 0 22 =8fmS1<aaTzEP^013XQe:2
+!i122 1
+l38
+L10 131
+VX<6B_gS3aY;eWBXEGObbY2
+!s100 ^eNOG]?RGWj?@^NAAGFBU0
+R7
+31
+R8
+!i10b 1
+R9
+R18
+Z19 !s107 tb_funcao.vhd|
+!i113 1
+R12
+R13

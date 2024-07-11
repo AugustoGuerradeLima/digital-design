@@ -1,0 +1,95 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/prade/Documents/ufmg/2024_01/lab_sd/aula10/ExemploFlipFlopD-20240711
+Effd
+Z1 w1720721816
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 0
+R0
+Z4 8FFD.vhd
+Z5 FFFD.vhd
+l0
+L4 1
+VcA6gZlW<=OH`jSH319@5`2
+!s100 _Qd`31H61NJI<QcM0zhB92
+Z6 OV;C;2020.1;71
+31
+Z7 !s110 1720723024
+!i10b 1
+Z8 !s108 1720723024.000000
+Z9 !s90 -reportprogress|300|-explicit|-93|FFD.vhd|
+Z10 !s107 FFD.vhd|
+!i113 1
+Z11 o-explicit -93
+Z12 tExplicit 1 CvgOpt 0
+Affpd
+R2
+R3
+DEx4 work 3 ffd 0 22 cA6gZlW<=OH`jSH319@5`2
+!i122 0
+l12
+L11 11
+VzlX[EYXZ0WK<M4oUPCT]N1
+!s100 CM_9F6[eo^k=e8=:i84aC2
+R6
+31
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Etb_ffd
+Z13 w1720722916
+Z14 DPx4 ieee 16 std_logic_textio 0 22 ^l:n6VFdg74Q?CKDhjD]D3
+R2
+R3
+!i122 1
+R0
+Z15 8tb_FFD.vhd
+Z16 Ftb_FFD.vhd
+l0
+L6 1
+V4ZYz7^>d`_l6Aie]gogKB0
+!s100 fNcHRGbEdVCRWbYo6A9Bc2
+R6
+31
+R7
+!i10b 1
+R8
+Z17 !s90 -reportprogress|300|-explicit|-93|tb_FFD.vhd|
+!s107 tb_FFD.vhd|
+!i113 1
+R11
+R12
+Abehavior
+R14
+R2
+R3
+DEx4 work 6 tb_ffd 0 22 4ZYz7^>d`_l6Aie]gogKB0
+!i122 1
+l43
+L9 140
+VjnWGAV4DfT:LKAM<O`Z8z0
+!s100 Q^7iV[D^OYQ[k6Bl;oe:L2
+R6
+31
+R7
+!i10b 1
+R8
+R17
+Z18 !s107 tb_FFD.vhd|
+!i113 1
+R11
+R12
