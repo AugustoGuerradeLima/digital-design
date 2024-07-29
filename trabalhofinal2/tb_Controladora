@@ -1,0 +1,91 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.numeric_std.all;
+
+entity tb_Controladora is
+    -- O testbench não possui portas, pois é uma simulação interna.
+end tb_Controladora;
+
+architecture behavior of tb_Controladora is
+
+    -- Componentes internos
+    component Controladora is
+        port (
+            Clock      : in std_logic;
+            Reset      : in std_logic;
+            Sobe       : in std_logic;  -- Entrada do Datapath
+            Desce      : in std_logic;  -- Entrada do Datapath
+            Atualizar  : out std_logic;
+            Subindo    : out std_logic  -- Saída de controle para indicar subida
+        );
+    end component;
+
+    -- Sinais de teste
+    signal Clock      : std_logic := '0';
+    signal Reset      : std_logic := '0';
+    signal Sobe       : std_logic := '0';
+    signal Desce      : std_logic := '0';
+    signal Atualizar  : std_logic;
+    signal Subindo    : std_logic;
+
+    -- Frequência do clock
+    constant Clock_Period : time := 10 ns;
+
+begin
+
+    -- Instância do componente Controladora
+    uut: Controladora
+        port map (
+            Clock      => Clock,
+            Reset      => Reset,
+            Sobe       => Sobe,
+            Desce      => Desce,
+            Atualizar  => Atualizar,
+            Subindo    => Subindo
+        );
+
+    -- Geração do clock
+    Clock_Process : process
+    begin
+        while True loop
+            Clock <= '0';
+            wait for Clock_Period / 2;
+            Clock <= '1';
+            wait for Clock_Period / 2;
+        end loop;
+    end process;
+
+    -- Stimulus Process
+    Stimulus_Process : process
+    begin
+        -- Inicialização
+        Reset <= '1';
+        wait for 20 ns;
+        Reset <= '0';
+        wait for 20 ns;
+
+        -- Teste 1: Sobe ativado
+        Sobe <= '1';
+        Desce <= '0';
+        wait for 20 ns;
+
+        -- Sobe desativado
+        Sobe <= '0';
+        wait for 20 ns;
+
+        -- Teste 2: Desce ativado
+        Desce <= '1';
+        wait for 20 ns;
+
+        -- Desce desativado
+        Desce <= '0';
+        wait for 20 ns;
+
+        -- Teste 3: Nenhuma ação
+        wait for 20 ns;
+
+        -- Finaliza a simulação
+        wait;
+    end process;
+
+end behavior;
