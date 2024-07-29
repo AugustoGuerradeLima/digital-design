@@ -1,0 +1,110 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.numeric_std.all;
+
+entity tb_Elevador is
+    -- O testbench não possui portas, pois é uma simulação interna.
+end tb_Elevador;
+
+architecture behavior of tb_Elevador is
+
+    -- Componentes internos
+    component Elevador is
+        port (
+            Clock_Controladora   : in std_logic;  -- Clock para a Controladora
+            Clock_Datapath        : in std_logic;  -- Clock para o Datapath
+            Reset                 : in std_logic;
+            Andar                 : in std_logic_vector(3 downto 0); -- Entrada para o Datapath
+            Escolher              : in std_logic;  -- Entrada para o Datapath
+            Sobe                  : out std_logic; -- Saída do Datapath
+            Desce                 : out std_logic; -- Saída do Datapath
+            BCD1                  : out std_logic_vector(6 downto 0); -- Saída para BCD1
+            BCD2                  : out std_logic_vector(6 downto 0); -- Saída para BCD2
+            Subindo               : buffer std_logic;
+            Atualizar             : buffer std_logic
+        );
+    end component;
+
+    -- Sinais de teste
+    signal Clock_Controladora   : std_logic := '0';
+    signal Clock_Datapath        : std_logic := '0';
+    signal Reset                 : std_logic := '0';
+    signal Andar                 : std_logic_vector(3 downto 0) := (others => '0');
+    signal Escolher              : std_logic := '0';
+    signal Sobe                  : std_logic;
+    signal Desce                 : std_logic;
+    signal BCD1                  : std_logic_vector(6 downto 0);
+    signal BCD2                  : std_logic_vector(6 downto 0);
+    signal Subindo               : std_logic;
+    signal Atualizar             : std_logic;
+
+    -- Frequências dos clocks
+    constant Clock_Period : time := 10 ns;
+
+begin
+
+    -- Instância do componente Elevador
+    uut: Elevador
+        port map (
+            Clock_Controladora => Clock_Controladora,
+            Clock_Datapath      => Clock_Datapath,
+            Reset               => Reset,
+            Andar               => Andar,
+            Escolher            => Escolher,
+            Sobe                => Sobe,
+            Desce               => Desce,
+            BCD1                => BCD1,
+            BCD2                => BCD2,
+            Subindo             => Subindo,
+            Atualizar           => Atualizar
+        );
+
+    -- Geração dos clocks
+    Clock_Process_Controladora : process
+    begin
+        Clock_Controladora <= '0';
+        wait for Clock_Period / 2;
+        Clock_Controladora <= '1';
+        wait for Clock_Period / 2;
+    end process;
+
+    Clock_Process_Datapath : process
+    begin
+        Clock_Datapath <= '0';
+        wait for Clock_Period / 2;
+        Clock_Datapath <= '1';
+        wait for Clock_Period / 2;
+    end process;
+
+    -- Processo de estímulo
+    Stimulus_Process : process
+    begin
+        -- Inicialização
+        Reset <= '1';
+        wait for 20 ns;
+        Reset <= '0';
+        wait for 20 ns;
+
+        -- Teste 1: Acionar o botão de subida
+        Andar <= "0001";  -- Escolhe o andar 1
+        Escolher <= '1';  -- Ativa a escolha
+        wait for 20 ns;
+        Escolher <= '0';  -- Desativa a escolha
+        wait for 40 ns;
+
+        -- Teste 2: Acionar o botão de descida
+        Andar <= "0010";  -- Escolhe o andar 2
+        Escolher <= '1';  -- Ativa a escolha
+        wait for 20 ns;
+        Escolher <= '0';  -- Desativa a escolha
+        wait for 40 ns;
+
+        -- Teste de transição e outros cenários
+        Andar <= "0000";  -- Nenhum andar selecionado
+        wait for 40 ns;
+
+        -- Finaliza a simulação
+        wait;
+    end process;
+
+end behavior;
