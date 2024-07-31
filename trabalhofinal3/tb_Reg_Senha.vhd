@@ -12,17 +12,17 @@ architecture Behavioral of tb_Reg_Senha is
     component Reg_Senha is
         Port ( clk     : in  STD_LOGIC;
                reset   : in  STD_LOGIC;
-               carregar    : in  STD_LOGIC;
-               digito   : in  STD_LOGIC_VECTOR (3 downto 0);
-               verificado  : out STD_LOGIC);
+               carregar: in  STD_LOGIC;
+               digito  : in  STD_LOGIC_VECTOR (3 downto 0);
+               senha   : out STD_LOGIC_VECTOR (15 downto 0));
     end component;
 
     -- Signals to connect to the Reg_Senha
     signal clk     : STD_LOGIC := '0';
     signal reset   : STD_LOGIC := '0';
-    signal carregar    : STD_LOGIC := '0';
-    signal digito   : STD_LOGIC_VECTOR (3 downto 0) := (others => '0');
-    signal verificado  : STD_LOGIC;
+    signal carregar: STD_LOGIC := '0';
+    signal digito  : STD_LOGIC_VECTOR (3 downto 0) := (others => '0');
+    signal senha   : STD_LOGIC_VECTOR (15 downto 0);
 
     -- Clock period definition
     constant clk_period : time := 10 ns;
@@ -36,7 +36,7 @@ begin
             reset => reset,
             carregar => carregar,
             digito => digito,
-            verificado => verificado
+            senha => senha
         );
 
     -- Clock process definitions
@@ -56,37 +56,33 @@ begin
         wait for clk_period*2;
         reset <= '0';
         
-        -- carregar the first digito (1)
+        -- Load the first digit (1)
         carregar <= '1';
         digito <= "0001";
         wait for clk_period*1;
         carregar <= '0';
         wait for clk_period*2;
 
-        -- carregar the second digito (2)
+        -- Load the second digit (2)
         carregar <= '1';
         digito <= "0010";
         wait for clk_period*1;
         carregar <= '0';
         wait for clk_period*2;
 
-        -- carregar the third digito (3)
+        -- Load the third digit (3)
         carregar <= '1';
         digito <= "0011";
         wait for clk_period*1;
         carregar <= '0';
         wait for clk_period*2;
 
-        -- carregar the fourth digito (4)
+        -- Load the fourth digit (4)
         carregar <= '1';
         digito <= "0100";
         wait for clk_period*1;
         carregar <= '0';
         wait for clk_period*2;
-
-        -- Check the verificado signal
-        wait for clk_period*2;
-        reset<= '1';
 
         -- Finish simulation
         wait;
