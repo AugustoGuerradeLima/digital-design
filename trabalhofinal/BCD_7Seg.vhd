@@ -11,7 +11,24 @@ end Bcd_7Seg;
 
 architecture Behavioral of BCD_7Seg is
 begin
-	Saida_1 <= "000" & Entrada;
+	with Entrada select
+		Saida_1 <= not "0000000" when "0000", -- A
+			  not "0000000" when "0001", --1
+			  not "0000000" when "0010", --2
+			  not "0000000" when "0011", --3
+			  not "0000000" when "0100", --4
+			  not "0000000" when "0101", --5
+			  not "0000000" when "0110", --6
+			  not "0000000" when "0111", --7
+			  not "0000000" when "1000", --8
+			  not "0000000" when "1001", --9
+			  not "1001111" when "1010", --10
+			  not "1001111" when "1011", --11
+			  not "1001111" when "1100", --12
+			  not "1001111" when "1101", --13
+			  not "1001111" when "1110", --14
+			  not "1001111" when "1111", --15
+			  not "1111111" when others;
 	with Entrada select
 		Saida_2 <= "0000100" when "0000", -- A
 					  "1001111" when "0001", --1
