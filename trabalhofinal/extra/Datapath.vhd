@@ -63,7 +63,7 @@ architecture Structural of Datapath is
 		);
 	end component;
 	
-	component Demux is
+	component Mux is
 		generic (
 			W : integer := 16;
 			log2W : integer := 4
@@ -124,7 +124,7 @@ architecture Structural of Datapath is
 			Count => s_Sig_Andar
 		);
 	
-		instancia_Demux : Demux generic map(W => 16, log2W => 4) 
+		instancia_Mux : Mux generic map(W => 16, log2W => 4) 
 			port map(
 				input_vector => s_Sig_Reg_FilaAndar,
 				selector => s_Sig_Proximo,
