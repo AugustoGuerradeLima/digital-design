@@ -2,11 +2,11 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity tb_Demux is
-end tb_Demux;
+entity tb_Mux is
+end tb_Mux;
 
-architecture Behavioral of tb_Demux is
-    component Demux
+architecture Behavioral of tb_Mux is
+    component Mux
         generic (
             W : integer := 16;
             log2W : integer := 4
@@ -26,7 +26,7 @@ architecture Behavioral of tb_Demux is
     signal output_value : std_logic;
 
 begin
-    uut: Demux
+    uut: Mux
         generic map (
             W => W,
             log2W => log2_W
